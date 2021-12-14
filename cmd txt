@@ -1,0 +1,1 @@
+1 npx webpack --entry=./index.js --output-filename=bundle.js --mode=development

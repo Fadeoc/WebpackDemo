@@ -1,3 +1,3 @@
 export default function () {
-  document.write('H W')
+  document.write('脚本搞定！')
 }
