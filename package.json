@@ -2,12 +2,11 @@
   "name": "webpackdemo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "scripts": {
-    "build": "webpack --entry=./index.js --output-filename=bundle.js --mode=development"
+    "build": "webpack --output-filename=bundle.js --mode=development"
   },
   "devDependencies": {
     "webpack": "^5.65.0"
