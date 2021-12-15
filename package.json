@@ -6,7 +6,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "build": "webpack --output-filename=bundle.js --mode=development"
+    "build": "webpack"
   },
   "devDependencies": {
     "webpack": "^5.65.0"
