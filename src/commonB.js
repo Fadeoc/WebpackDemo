@@ -1,4 +1,11 @@
 const name = 'commonB';
 const nameFromA = require('./commonA');
-console.log('name: ', name);
-console.log('nameFromA: ', nameFromA);
+console.log('nameB: ', name);
+console.log('A: ', nameFromA);
+
+// 重新指向错误写法
+// exports = {
+//
+// }
+
+exports.nameB = name;
