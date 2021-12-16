@@ -1,3 +1,4 @@
 const name = 'commonB';
-require('./commonA');
+const nameFromA = require('./commonA');
 console.log('name: ', name);
+console.log('nameFromA: ', nameFromA);
