@@ -1,3 +1,3 @@
 export default function () {
-  document.write('默认的 src 目录！')
+  document.write('配置好了dev-server！并且hot-reload~')
 }
