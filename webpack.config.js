@@ -5,12 +5,26 @@ module.exports = {
   // 字符串、数组、对象、函数
   // entry: './index.js',
   // entry: ['./depTest.js', './index.js'],
+  entry: {
+    landing: './index.js',
+    login: './login.js',
+    vendor: ['vue']
+  },
   output: {
-    filename: "./bundle.js" // 系统绝对路径
+    // 打包输出位置
+    path: path.join(__dirname, 'dist'),
+    // 间接资源路径
+    // '', './' '../' 相对 html 的相对路径
+    // '/' '/*/' 相对 host 的路径（以斜杠开头）
+    // 'http://cnd.com/assets' 绝对域名，CDN分发
+    publicPath: '/',
+    // [hash],  [chunkhash],  [id],  [query]
+    filename: "./[name].[chunkhash].js"
   },
   mode: 'development',
   devServer: {
     devMiddleware: {
+      // devServer 专用
       publicPath: '/dist',
     },
   }
