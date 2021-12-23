@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   // 入口路径上文，非其他上文
   context: path.join(__dirname, './src'),
@@ -17,9 +18,9 @@ module.exports = {
     // '', './' '../' 相对 html 的相对路径
     // '/' '/*/' 相对 host 的路径（以斜杠开头）
     // 'http://cnd.com/assets' 绝对域名，CDN分发
-    publicPath: '/',
+    publicPath: '/dist',
     // [hash],  [chunkhash],  [id],  [query]
-    filename: "./[name].[chunkhash].js"
+    filename: "./[name].[hash].js"
   },
   mode: 'development',
   devServer: {
@@ -27,5 +28,21 @@ module.exports = {
       // devServer 专用
       publicPath: '/dist',
     },
-  }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.less$/i,
+        use: [
+          // compiles Less to CSS
+          "style-loader",
+          "css-loader",
+          "less-loader",
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin()
+  ]
 }
