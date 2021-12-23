@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   // 入口路径上文，非其他上文
   context: path.join(__dirname, './src'),
@@ -39,6 +40,16 @@ module.exports = {
           "css-loader",
           "less-loader",
         ],
+        exclude: /node_ modules/
+      },
+      {
+        test: /\.js$/i,
+        use: [
+          {
+            loader: path.resolve('./src/replaceTextLoader.js')
+          }
+        ],
+        exclude: /node_ modules/
       },
     ],
   },
