@@ -1,5 +1,6 @@
 const path = require("path");
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   // 入口路径上文，非其他上文
@@ -10,7 +11,6 @@ module.exports = {
   entry: {
     landing: './index.js',
     login: './login.js',
-    vendor: ['vue']
   },
   output: {
     // 打包输出位置
@@ -36,24 +36,48 @@ module.exports = {
         test: /\.less$/i,
         use: [
           // compiles Less to CSS
-          "style-loader",
+          {loader: MiniCssExtractPlugin.loader, options: {publicPath: '../',},},
           "css-loader",
           "less-loader",
         ],
         exclude: /node_ modules/
       },
-      {
-        test: /\.js$/i,
-        use: [
-          {
-            loader: path.resolve('./src/replaceTextLoader.js')
-          }
-        ],
-        exclude: /node_ modules/
-      },
+      // {
+      //   test: /\.js$/i,
+      //   use: [
+      //     {
+      //       loader: path.resolve('./src/replaceTextLoader.js')
+      //     }
+      //   ],
+      //   exclude: ['/node_ modules/', '/dist/']
+      // },
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin()
-  ]
+    new HtmlWebpackPlugin(),
+    new MiniCssExtractPlugin({filename: '[name].css', chunkFilename: '[id].css',})
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  }
 }
