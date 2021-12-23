@@ -21,7 +21,8 @@ module.exports = {
     // 'http://cnd.com/assets' 绝对域名，CDN分发
     publicPath: '/dist',
     // [hash],  [chunkhash],  [id],  [query]
-    filename: "./[name].[hash].js"
+    filename: "./[name].[hash].js",
+    chunkFilename: "./[name].js"
   },
   mode: 'development',
   devServer: {
